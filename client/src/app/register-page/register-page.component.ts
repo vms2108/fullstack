@@ -1,3 +1,4 @@
+import { MaterialService } from './../shared/classes/material.service';
 import { Router } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -34,7 +35,7 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
   public onSubmit(): void {
     this.form.disable();
     const user = this.form.value;
-  
+
     this.auth.register(user)
       .pipe(
         takeUntil(this.destroy)
@@ -47,16 +48,17 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
         },
         (error) => {
           console.warn(error);
+          MaterialService.toast(error.error.message);
           this.form.enable();
         }
-      )
+      );
   }
 
   private createForm(): void {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required]],
       password: ['', [Validators.required]]
-    })
+    });
   }
 
 

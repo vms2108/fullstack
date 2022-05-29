@@ -1,3 +1,4 @@
+import { MaterialService } from './../shared/classes/material.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -28,11 +29,13 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     this.route.queryParams
       .subscribe((params) => {
         if (params.registered) {
-          console.log('Можете зайти в систему, используя свои данные')
+          MaterialService.toast('Можете зайти в систему, используя свои данные');
         } else if (params.accessDenied) {
-          console.log('Авторизуйтесь')
+          MaterialService.toast('Авторизуйтесь');
+        } else if (params.sessionFailed) {
+          MaterialService.toast('Пожалуйста, войдите в систему заново');
         }
-      })
+      });
   }
 
   public ngOnDestroy(): void {
@@ -43,7 +46,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   public onSubmit(): void {
     this.form.disable();
     const user = this.form.value;
-  
+
     this.auth.login(user)
       .pipe(
         takeUntil(this.destroy)
@@ -53,17 +56,17 @@ export class LoginPageComponent implements OnInit, OnDestroy {
           this.router.navigate(['/overview']);
         },
         (error) => {
-          console.warn(error);
+          MaterialService.toast(error.error.message);
           this.form.enable();
         }
-      )
+      );
   }
 
   private createForm(): void {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required]],
       password: ['', [Validators.required]]
-    })
+    });
   }
 
 }

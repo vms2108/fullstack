@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserJson } from '../interfaces/user.json-interface';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -19,10 +19,10 @@ export class AuthService {
     return this.http
       .post<{token: string}>('/api/auth/login', user)
       .pipe(map(answer => {
-        localStorage.setItem('auth-token', answer.token)
+        localStorage.setItem('auth-token', answer.token);
         this.setToken(answer.token);
         return answer;
-      }))
+      }));
   }
 
   public register(user: UserJson): Observable<UserJson> {
@@ -30,7 +30,7 @@ export class AuthService {
       .post<UserJson>('/api/auth/register', user)
       .pipe(map(answer => {
         return answer;
-      }))
+      }));
   }
 
   public getToken(): string {
@@ -46,7 +46,7 @@ export class AuthService {
     localStorage.clear();
   }
 
-  private setToken(token: string): void {
+  public setToken(token: string): void {
     this.token = token;
   }
 }
