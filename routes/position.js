@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const controller = require('../controllers/position');
+const passport = require('passport')
 
 router.get('/:categoryId', passport.authenticate('jwt', {session: false}), controller.getByCategoryId)
 router.post('/', passport.authenticate('jwt', {session: false}), controller.create)
