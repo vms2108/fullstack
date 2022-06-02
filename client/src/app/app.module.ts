@@ -1,3 +1,5 @@
+import { PositionsFormComponent } from './categories-page/categories-form/positions-form/positions-form.component';
+import { LoaderComponent } from './shared/component/loader/loader.component';
 import { TokenInterceptor } from './shared/classes/token.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.component';
@@ -15,6 +17,7 @@ import { AnalyticsPageComponent } from './analytics-page/analytics-page.componen
 import { HistoryPageComponent } from './history-page/history-page.component';
 import { OrderPageComponent } from './order-page/order-page.component';
 import { CategoriesPageComponent } from './categories-page/categories-page.component';
+import { CategoriesFormComponent } from './categories-page/categories-form/categories-form.component';
 
 @NgModule({
   imports: [
@@ -34,7 +37,10 @@ import { CategoriesPageComponent } from './categories-page/categories-page.compo
     AnalyticsPageComponent,
     HistoryPageComponent,
     OrderPageComponent,
-    CategoriesPageComponent
+    CategoriesPageComponent,
+    CategoriesFormComponent,
+    LoaderComponent,
+    PositionsFormComponent,
   ],
   providers: [
     {

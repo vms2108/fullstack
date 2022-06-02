@@ -1,3 +1,4 @@
+import { CategoriesFormComponent } from './categories-page/categories-form/categories-form.component';
 import { AuthGuard } from './shared/classes/auth.guard';
 import { SiteLayoutComponent } from './shared/layouts/site-layout/site-layout.component';
 import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.component';
@@ -55,6 +56,14 @@ const routes: Routes = [
       {
         path: 'category',
         component: CategoriesPageComponent,
+      },
+      {
+        path: 'category/new',
+        component: CategoriesFormComponent,
+      },
+      {
+        path: 'category/:id',
+        component: CategoriesFormComponent,
       },
     ]
   },
