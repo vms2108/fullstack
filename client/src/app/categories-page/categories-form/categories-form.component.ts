@@ -1,9 +1,9 @@
 import { CategoryJson } from './../../shared/interfaces/category.json-interface';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { CategoriesService } from 'src/app/shared/services/categories.service';
-import { switchMap } from 'rxjs/operators';
+import { finalize, switchMap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { MaterialService } from 'src/app/shared/classes/material.service';
 
@@ -32,6 +32,7 @@ export class CategoriesFormComponent implements OnInit {
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly formBuilder: FormBuilder,
     private readonly categoriesService: CategoriesService,
+    private readonly router: Router,
   ) { }
 
   public ngOnInit(): void {
@@ -55,6 +56,7 @@ export class CategoriesFormComponent implements OnInit {
         category => {
           this.category = category;
           MaterialService.toast('Изменения сохранены');
+          this.form.enable();
           this.changeDetectorRef.markForCheck();
         },
         error => {
@@ -63,6 +65,22 @@ export class CategoriesFormComponent implements OnInit {
           this.changeDetectorRef.markForCheck();
         }
       );
+  }
+
+  public deleteCategory(): void {
+    const decision = window.confirm(`Вы уверены, что хотите удалить категорию ${ this.category.name }`);
+
+    if (decision) {
+      this.categoriesService
+        .delete(this.category._id)
+        .pipe(
+          finalize(() => this.router.navigate(['/category']))
+        )
+        .subscribe(
+          answer => MaterialService.toast(answer.message),
+          error => MaterialService.toast(error.error.message),
+        );
+    }
   }
 
   public triggerClick(): void {

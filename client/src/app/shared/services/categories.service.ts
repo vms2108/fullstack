@@ -1,3 +1,4 @@
+import { MessageJson } from './../interfaces/message.json-interface';
 import { Observable } from 'rxjs';
 import { CategoryJson } from './../interfaces/category.json-interface';
 import { HttpClient } from '@angular/common/http';
@@ -41,5 +42,10 @@ export class CategoriesService {
     formData.append('name', name);
     return this.http
       .patch<CategoryJson>(`/api/category/${ id }`, formData);
+  }
+
+  public delete(id: string): Observable<MessageJson> {
+    return this.http
+      .delete<MessageJson>(`/api/category/${ id }`);
   }
 }

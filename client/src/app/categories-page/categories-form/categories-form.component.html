@@ -5,8 +5,8 @@
     {{isNew ? 'Добавить' : 'Редактировать'}}
     категорию
   </h4>
-  <span>
-    <button class="btn btn-small red">
+  <span *ngIf="!isNew">
+    <button class="btn btn-small red" (click)="deleteCategory()">
       <i class="material-icons">delete</i>
     </button>
   </span>
@@ -61,4 +61,4 @@
   </div>
 </form>
 
-<app-positions-form></app-positions-form>
+<app-positions-form *ngIf="category?._id" [categoryId]="category._id"></app-positions-form>
