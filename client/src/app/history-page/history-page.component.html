@@ -3,13 +3,14 @@
   <button
     class="btn btn-small"
     [class.active]="isFilterVisible"
+    [class.red]="isFiltered()"
     (click)="isFilterVisible = !isFilterVisible"
   >
     <i class="material-icons">filter_list</i>
   </button>
 </div>
 
-<app-history-filter *ngIf="isFilterVisible"></app-history-filter>
+<app-history-filter (filterReady)="applyFilter($event)" *ngIf="isFilterVisible"></app-history-filter>
 
 <ng-container *ngIf="!reloading; else reloader">
   <ng-container *ngIf="orders.length; else empty">

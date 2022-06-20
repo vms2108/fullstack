@@ -1,3 +1,4 @@
+import { MaterialDatepickerJson } from './../interfaces/material-datepicker.json-inteface';
 import { ElementRef } from '@angular/core';
 declare var M;
 
@@ -22,5 +23,13 @@ export class MaterialService {
 
   static initModal(ref: ElementRef): MaterialInstanse {
     return M.Modal.init(ref.nativeElement);
+  }
+
+  static initDatepicker(ref: ElementRef, onClose: () => void): MaterialDatepickerJson {
+    return M.Datepicker.init(ref.nativeElement, {
+      format: 'dd.mm.yyyy',
+      showClearBtn: true,
+      onClose
+    });
   }
 }

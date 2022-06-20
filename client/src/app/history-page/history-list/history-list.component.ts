@@ -25,7 +25,9 @@ export class HistoryListComponent implements OnDestroy, AfterViewInit {
   ) { }
 
   public ngOnDestroy(): void {
-    this.modal.destroy();
+    if (this.modal) {
+      this.modal.destroy();
+    }
   }
 
   public ngAfterViewInit(): void {

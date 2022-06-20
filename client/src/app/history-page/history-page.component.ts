@@ -1,3 +1,4 @@
+import { FilterJson } from './../shared/interfaces/filter.json-interface';
 import { OrderJson } from './../shared/interfaces/order.json-interface';
 import { takeUntil, finalize } from 'rxjs/operators';
 
@@ -28,6 +29,8 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
 
   public noMoreOrders = false;
 
+  private filter: FilterJson = {};
+
   private destroy = new Subject<void>();
 
   constructor(
@@ -51,11 +54,23 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
     this.fetch();
   }
 
+  public applyFilter(filter: FilterJson): void {
+    this.orders = [];
+    this.offset = 0;
+    this.setReLoading(true);
+    this.filter = filter;
+    this.fetch();
+  }
+
+  public isFiltered(): boolean {
+    return !!Object.keys(this.filter).length;
+  }
+
   private fetch(): void {
-    const params = {
+    const params = Object.assign({
       offset: this.offset,
       limit: this.limit,
-    };
+    }, this.filter);
     this.ordersService.fetch(params)
       .pipe(
         takeUntil(this.destroy),
