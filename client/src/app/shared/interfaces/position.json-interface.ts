@@ -4,4 +4,5 @@ export interface PositionJson {
   user?: string;
   category: string;
   _id?: string;
+  quantity?: number;
 }

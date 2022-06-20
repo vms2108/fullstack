@@ -1,3 +1,7 @@
+import { HistoryListComponent } from './history-page/history-list/history-list.component';
+import { HistoryFilterComponent } from './history-page/history-filter/history-filter.component';
+import { OrderPositionsComponent } from './order-page/order-positions/order-positions.component';
+import { OrderCategoriesComponent } from './order-page/order-categories/order-categories.component';
 import { PositionsFormComponent } from './categories-page/categories-form/positions-form/positions-form.component';
 import { LoaderComponent } from './shared/component/loader/loader.component';
 import { TokenInterceptor } from './shared/classes/token.interceptor';
@@ -41,6 +45,10 @@ import { CategoriesFormComponent } from './categories-page/categories-form/categ
     CategoriesFormComponent,
     LoaderComponent,
     PositionsFormComponent,
+    OrderCategoriesComponent,
+    OrderPositionsComponent,
+    HistoryFilterComponent,
+    HistoryListComponent,
   ],
   providers: [
     {
