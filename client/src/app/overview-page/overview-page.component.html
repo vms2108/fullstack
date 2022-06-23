@@ -1,7 +1,6 @@
 <div class="page-title">
   <h4>
-      Обзор за вчера ()
-      <i class="material-icons black-text pointer">info_outline</i>
+    Обзор за вчера ({{ yesterday | date:'dd MMMM yyyy'}})
   </h4>
 </div>
 
@@ -10,52 +9,52 @@
   class="row"
 >
   <div class="col s12 l6">
-      <div class="card light-blue lighten-2 white-text">
-          <div class="card-content">
-              <span class="card-title">Выручка:</span>
-              <h3>{{ data.gain.yesterday }} руб.</h3>
-              <h3
-                class="m0 mb1"
-                [class.green-text]="data.gain.isHighter"
-                [class.text-darken-2]="data.gain.isHighter"
-                [class.red-text]="!data.gain.isHighter"
-              >
-                  <i class="material-icons" >
-                    {{ data.gain.isHighter ? 'arrow_upward' : 'arrow_downward' }}
-                  </i>
-                  {{ data.gain.percent }}%
-              </h3>
-              <p>
-                Выручка вашего бизнеса вчера на {{ data.gain.percent }}% 
-                {{ data.gain.isHighter ? 'выше' : 'ниже' }}
-                 среднего: {{ data.gain.compare }} руб. в день
-              </p>
-          </div>
+    <div class="card light-blue lighten-2 white-text">
+      <div class="card-content">
+        <span class="card-title">Выручка:</span>
+        <h3>{{ data.gain.yesterday }} руб.</h3>
+        <h3
+          class="m0 mb1"
+          [class.green-text]="data.gain.isHighter"
+          [class.text-darken-2]="data.gain.isHighter"
+          [class.red-text]="!data.gain.isHighter"
+        >
+          <i class="material-icons" >
+            {{ data.gain.isHighter ? 'arrow_upward' : 'arrow_downward' }}
+          </i>
+          {{ data.gain.percent }}%
+        </h3>
+        <p>
+          Выручка вашего бизнеса вчера на {{ data.gain.percent }}% 
+          {{ data.gain.isHighter ? 'выше' : 'ниже' }}
+            среднего: {{ data.gain.compare }} руб. в день
+        </p>
       </div>
+    </div>
   </div>
 
   <div *ngIf="data" class="col s12 l6">
-      <div class="card orange lighten-2 white-text">
-          <div class="card-content">
-              <span class="card-title">Заказы:</span>
-              <h3>{{ data.orders.yesterday }} зак.</h3>
-              <h3
-                class="m0 mb1"
-                class="m0 mb1"
-                [class.green-text]="data.orders.isHighter"
-                [class.text-darken-2]="data.orders.isHighter"
-                [class.red-text]="!data.orders.isHighter"
-              >
-                <i class="material-icons" >
-                  {{ data.orders.isHighter ? 'arrow_upward' : 'arrow_downward' }}
-                </i>
-                {{ data.orders.percent }}%
-              </h3>
-              <p>Число заказов вчера на {{ data.orders.percent }}%
-                {{ data.orders.isHighter ? 'выше' : 'ниже' }}
-                среднего значения: {{ data.orders.compare }} зак. в день</p>
-          </div>
+    <div class="card orange lighten-2 white-text">
+      <div class="card-content">
+        <span class="card-title">Заказы:</span>
+        <h3>{{ data.orders.yesterday }} зак.</h3>
+        <h3
+          class="m0 mb1"
+          class="m0 mb1"
+          [class.green-text]="data.orders.isHighter"
+          [class.text-darken-2]="data.orders.isHighter"
+          [class.red-text]="!data.orders.isHighter"
+        >
+          <i class="material-icons" >
+            {{ data.orders.isHighter ? 'arrow_upward' : 'arrow_downward' }}
+          </i>
+          {{ data.orders.percent }}%
+        </h3>
+        <p>Число заказов вчера на {{ data.orders.percent }}%
+          {{ data.orders.isHighter ? 'выше' : 'ниже' }}
+          среднего значения: {{ data.orders.compare }} зак. в день</p>
       </div>
+    </div>
   </div>
 </div>
 

@@ -48,13 +48,13 @@ export class AnalyticsPageComponent implements AfterViewInit, OnDestroy {
         this.average = data.average;
         this.pending = false;
         gainConfig.labels = data.chart.map(item => item.label)
-        gainConfig.date = data.chart.map(item => item.gain)
+        gainConfig.data = data.chart.map(item => item.gain)
         const gainCtx = this.gainRef.nativeElement.getContext('2d')
         gainCtx.canvas.height = '300px';
         new Chart(gainCtx, createCharnConfig(gainConfig))
 
         orderConfig.labels = data.chart.map(item => item.label)
-        orderConfig.date = data.chart.map(item => item.order)
+        orderConfig.data = data.chart.map(item => item.order)
         const orderCtx = this.orderRef.nativeElement.getContext('2d')
         orderCtx.canvas.height = '300px';
         new Chart(orderCtx, createCharnConfig(orderConfig))
@@ -70,6 +70,7 @@ export class AnalyticsPageComponent implements AfterViewInit, OnDestroy {
 }
 
 function createCharnConfig({labels, data, label, color}): ChartConfiguration {
+  console.log(data, label)
     return {
       type: 'line',
       options: {

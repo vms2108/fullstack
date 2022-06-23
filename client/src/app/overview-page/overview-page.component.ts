@@ -12,11 +12,14 @@ import { OverviewJson } from '../shared/interfaces/overview.json-interface';
 export class OverviewPageComponent implements OnInit {
   public data$!: Observable<OverviewJson>;
 
+  public yesterday!: Date;  
+
   constructor(
     private readonly service: AnalyticService,
   ) {}
 
   public ngOnInit(): void {
     this.data$ = this.service.getOverview()
+    this.yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
   }
 }

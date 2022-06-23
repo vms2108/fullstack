@@ -31,7 +31,7 @@ export class HistoryListComponent implements OnDestroy, AfterViewInit {
   }
 
   public ngAfterViewInit(): void {
-    this.modal = MaterialService.initModal(this.modalRef.nativeElement);
+    this.modal = MaterialService.initModal(this.modalRef);
   }
 
   public computePrice(order: OrderJson): number {

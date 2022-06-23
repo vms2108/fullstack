@@ -12,17 +12,17 @@ const orderSchema = Schema({
   },
   list: [
     {
-      name: {
-        Type: String,
-      },
-      quantity: {
-        Type: Number,
-      },
-      cost: {
-        Type: Number,
-      }
+    name: {
+      type: String
+    },
+    quantity: {
+      type: Number
+    },
+    cost: {
+      type: Number
     }
-  ],
+  }
+],
   user: {
     ref: 'users',
     type: Schema.Types.ObjectId
