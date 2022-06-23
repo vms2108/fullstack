@@ -1,6 +1,6 @@
 <div class="page-title">
   <h4>
-      Обзор за вчера ({{ new Date() | date:"dd MMMM yyyy"}})
+      Обзор за вчера ()
       <i class="material-icons black-text pointer">info_outline</i>
   </h4>
 </div>
@@ -34,7 +34,7 @@
       </div>
   </div>
 
-  <div class="col s12 l6">
+  <div *ngIf="data" class="col s12 l6">
       <div class="card orange lighten-2 white-text">
           <div class="card-content">
               <span class="card-title">Заказы:</span>

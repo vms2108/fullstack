@@ -1,3 +1,4 @@
+import { AnalyticsJson } from './../interfaces/analytics.json-interface';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -15,5 +16,7 @@ export class AnalyticService {
     return this.http.get<OverviewJson>('api/analytics/overview')
   }
 
-  public getAnalytics() {}
+  public getAnalytics(): Observable<AnalyticsJson> {
+    return this.http.get<AnalyticsJson>('api/analytics/analytics')
+  }
 }

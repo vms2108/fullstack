@@ -33,6 +33,7 @@ module.exports.getAll = async function(req, res) {
       .sort({date: -1})
       .skip(+req.query.offset)
       .limit(+req.query.limit)
+    console.log(orders[0].list)
     res.status(200).json(orders)
   } catch(e) {
     errorHandler(res, e)
